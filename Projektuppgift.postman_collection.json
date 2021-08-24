@@ -34,28 +34,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://104.209.254.152/api/categories/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
-					"protocol": "http",
+					"raw": "{{url/api/}}categories{{API-Key categories, combinations, configurations}}",
 					"host": [
-						"104",
-						"209",
-						"254",
-						"152"
-					],
-					"path": [
-						"api",
-						"categories",
-						""
-					],
-					"query": [
-						{
-							"key": null,
-							"value": null
-						},
-						{
-							"key": "ws_key",
-							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
-						}
+						"{{url/api/}}categories{{API-Key categories, combinations, configurations}}"
 					]
 				}
 			},
@@ -214,6 +195,16 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url/api/",
+			"value": "http://104.209.254.152/api/"
+		},
+		{
+			"key": "API-Key categories, combinations, configurations",
+			"value": "/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
 		}
 	]
 }
