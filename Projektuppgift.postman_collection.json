@@ -44,37 +44,155 @@
 		},
 		{
 			"name": "Category 4 (Men)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Men\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "{{url/api}}categories/4{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api}}categories"
+					],
+					"path": [
+						"4{{API-Key categories, combinations, configurations}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Category 5 (Women)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Women\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url/api}}categories/5{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api}}categories"
+					],
+					"path": [
+						"5{{API-Key categories, combinations, configurations}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Category 7 (Stationery)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Stationery\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "{{url/api}}categories/7{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api}}categories"
+					],
+					"path": [
+						"7{{API-Key categories, combinations, configurations}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Category 8 (Home Accessories)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Home Accessories\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "{{url/api}}categories/8{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api}}categories"
+					],
+					"path": [
+						"8{{API-Key categories, combinations, configurations}}"
+					]
+				}
 			},
 			"response": []
 		}
