@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "29c339d0-39c1-4932-92cc-da1d3b37f5ca",
+		"name": "Projektuppgift",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category (All)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID 4, 5, 7 and 8 exists\")\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"4\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"5\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"7\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"8\"');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url/api}}categories{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api}}categories{{API-Key categories, combinations, configurations}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category 4 (Men)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Category 5 (Women)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Category 7 (Stationery)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Category 8 (Home Accessories)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
