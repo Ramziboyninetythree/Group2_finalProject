@@ -34,9 +34,28 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url/api/}}categories{{API-Key categories, combinations, configurations}}",
+					"raw": "http://104.209.254.152/api/categories/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
 					"host": [
-						"{{url/api/}}categories{{API-Key categories, combinations, configurations}}"
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"categories",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
 					]
 				}
 			},
@@ -68,12 +87,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url/api}}categories/4{{API-Key categories, combinations, configurations}}",
+					"raw": "http://104.209.254.152/api/categories/4/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
 					"host": [
-						"{{url/api}}categories"
+						"104",
+						"209",
+						"254",
+						"152"
 					],
 					"path": [
-						"4{{API-Key categories, combinations, configurations}}"
+						"api",
+						"categories",
+						"4",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
 					]
 				}
 			},
@@ -115,12 +151,29 @@
 					}
 				},
 				"url": {
-					"raw": "{{url/api}}categories/5{{API-Key categories, combinations, configurations}}",
+					"raw": "http://104.209.254.152/api/categories/5/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
 					"host": [
-						"{{url/api}}categories"
+						"104",
+						"209",
+						"254",
+						"152"
 					],
 					"path": [
-						"5{{API-Key categories, combinations, configurations}}"
+						"api",
+						"categories",
+						"5",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
 					]
 				}
 			},
@@ -150,12 +203,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url/api}}categories/7{{API-Key categories, combinations, configurations}}",
+					"raw": "http://104.209.254.152/api/categories/7/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
 					"host": [
-						"{{url/api}}categories"
+						"104",
+						"209",
+						"254",
+						"152"
 					],
 					"path": [
-						"7{{API-Key categories, combinations, configurations}}"
+						"api",
+						"categories",
+						"7",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
 					]
 				}
 			},
@@ -185,12 +255,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url/api}}categories/8{{API-Key categories, combinations, configurations}}",
+					"raw": "http://104.209.254.152/api/categories/8/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
 					"host": [
-						"{{url/api}}categories"
+						"104",
+						"209",
+						"254",
+						"152"
 					],
 					"path": [
-						"8{{API-Key categories, combinations, configurations}}"
+						"api",
+						"categories",
+						"8",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
 					]
 				}
 			},
