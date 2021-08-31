@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "29c339d0-39c1-4932-92cc-da1d3b37f5ca",
+		"name": "Projektuppgift",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category (All)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID 4, 5, 7 and 8 exists\")\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"4\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"5\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"7\"');\r",
+							"    pm.expect(pm.response.text()).to.include('category id=\"8\"');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url/api/}}categories{{API-Key categories, combinations, configurations}}",
+					"host": [
+						"{{url/api/}}categories{{API-Key categories, combinations, configurations}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category 4 (Men)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Men\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/categories/4/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"categories",
+						"4",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category 5 (Women)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Women\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.209.254.152/api/categories/5/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"categories",
+						"5",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category 7 (Stationery)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Stationery\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/categories/7/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"categories",
+						"7",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category 8 (Home Accessories)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.expect()\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Home Accessories\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/categories/8/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"categories",
+						"8",
+						""
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url/api/",
+			"value": "http://104.209.254.152/api/"
+		},
+		{
+			"key": "API-Key categories, combinations, configurations",
+			"value": "/?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+		}
+	]
+}
