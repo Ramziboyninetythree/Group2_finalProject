@@ -1274,131 +1274,10 @@
 					"name": "Filter using JavaScript",
 					"item": [
 						{
-							"name": "JavaScript",
+							"name": "JavaScript products -> all sizes",
 							"item": [
 								{
-									"name": "Filter: Anything (JavaScript)",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"\r",
-													"let whatToFilter = 1;\r",
-													"/* \r",
-													"::SIZES:: \r",
-													"1 = Small\r",
-													"2 = Medium\r",
-													"3 = Large\r",
-													"4 = X-Large\r",
-													"::COLORS:: \r",
-													"5 = Grey, #AAB2BD\r",
-													"6 = Taupe, #CFC4A6\r",
-													"7 = Beige, #f5f5dc\r",
-													"8 = White, #ffffff\r",
-													"9 = Off White, #faebd7\r",
-													"10 = Red, #E84C3D\r",
-													"11 = Black, #434A54\r",
-													"12 = Camel, #C19A6B\r",
-													"13 = Orange, #F39C11\r",
-													"14 = Blue, #5D9CEC\r",
-													"15 = Green, #A0D468\r",
-													"16 = Yellow, #F1C40F\r",
-													"17 = Brown, #964B00\r",
-													"18 = Pink, #FCCACD\r",
-													"::DIMENSION::\r",
-													"19 = 40x60cm\r",
-													"20 = 60x90cm\r",
-													"21 = 80x120cm\r",
-													"::PAPER:TYPE::\r",
-													"22 = Ruled\r",
-													"23 = Plain\r",
-													"24 = Squarred\r",
-													"25 = Doted\r",
-													"*/ \r",
-													"\r",
-													"pm.test(\"Anything & everything...\", function () {\r",
-													"var sub_array = [];\r",
-													"var super_array = [];\r",
-													"    for (let i = 0; i < jsonData.products.length; i++) {\r",
-													"        jsonData.products[i].associations.product_option_values;\r",
-													"        \r",
-													"        if(jsonData.products[i].associations.product_option_values != null) {\r",
-													"            for (let j = 0; j < jsonData.products[i].associations.product_option_values.length; j++) {\r",
-													"                jsonData.products[i].associations.product_option_values[j];\r",
-													"\r",
-													"                if(jsonData.products[i].associations.product_option_values[j].id == whatToFilter) {\r",
-													"                    //console.log(jsonData.products[i].name)\r",
-													"                    sub_array.push(i)\r",
-													"                    super_array.push(sub_array.slice(0));\r",
-													"                    console.log(\"sub \" + sub_array)\r",
-													"                    console.log(\"super \" + super_array)\r",
-													"                    console.log(\"i\" + jsonData.products[i].id)\r",
-													"                    //pm.expect(sub_array).to.have.all.keys('1' || '2')\r",
-													"                    //console.log(\"id: \" + jsonData.products[i].id + \"    \" + \"name: \" + jsonData.products[i].name + \"    \" + \"Product option values: \" + JSON.stringify(jsonData.products[i].associations.product_option_values[j]))\r",
-													"                    //pm.expect(jsonData.products[i].id).to.eql()\r",
-													"                //let arr = ['Hummingbird printed t-shirt', 'Hummingbird printed sweater'], responseText = jsonData.products[i].name; arr.forEach((x) => { pm.expect(responseText).to.include(x); });\r",
-													"                        \r",
-													"                        \r",
-													"                       // sub_array.forEach(function(item) {\r",
-													"                       // pm.expect(item).to.have.all.keys('1');});\r",
-													"\r",
-													"\r",
-													"\r",
-													"\r",
-													"\r",
-													"                //console.log(jsonData.products[i].name.length)\r",
-													"                //pm.expect(jsonData.products[i].name).to.contain(\"t-shirt\")\r",
-													"                //console.log(typeof jsonData.products[i].name)\r",
-													"                }\r",
-													"            }\r",
-													"        }\r",
-													"\r",
-													"    }\r",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://104.209.254.152/api/products/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=full",
-											"protocol": "http",
-											"host": [
-												"104",
-												"209",
-												"254",
-												"152"
-											],
-											"path": [
-												"api",
-												"products",
-												""
-											],
-											"query": [
-												{
-													"key": "ws_key",
-													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
-												},
-												{
-													"key": "output_format",
-													"value": "JSON"
-												},
-												{
-													"key": "display",
-													"value": "full"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "tmp",
+									"name": "Filter: products -> S M L XL",
 									"event": [
 										{
 											"listen": "test",
@@ -1406,7 +1285,11 @@
 												"exec": [
 													"var jsonData = pm.response.json();  \r",
 													"\r",
-													"/* \r",
+													"// Test name variables\r",
+													"fancyTestNameGoesHere = \"Sorting products: Sizes -> S, M, L, XL\"\r",
+													"\r",
+													"// FILTERS\r",
+													"/*\r",
 													"::SIZES:: \r",
 													"1 = Small\r",
 													"2 = Medium\r",
@@ -1449,7 +1332,8 @@
 													"            return objs.indexOf(item) >= 0 ? false : objs.push(item);\r",
 													"    });\r",
 													"}\r",
-													"pm.test(\"Body matches values\", function () {\r",
+													"\r",
+													"pm.test(`${fancyTestNameGoesHere}`, function () {\r",
 													"\r",
 													"        for (let i = 0; i < jsonData.products.length; i++) {\r",
 													"            jsonData.products[i].associations.product_option_values;\r",
