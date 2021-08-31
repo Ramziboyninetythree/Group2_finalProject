@@ -1,0 +1,2148 @@
+{
+	"info": {
+		"_postman_id": "e84eadb1-6a72-4b3c-8a09-b0f3830b755f",
+		"name": "Testverktyg: PrestaShop (Group #2)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create a new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"newUser = jsonData.customer.id;\r",
+									"pm.collectionVariables.set(\"newUser\", \"/\"+newUser);\r",
+									"\r",
+									"// Test name variables\r",
+									"check_if = \"Check if user ID #\";\r",
+									"is_present = \"is present\";\r",
+									"is_correct = \"is correct\";\r",
+									"user = jsonData.customer.id;\r",
+									"\r",
+									"// Test data variables\r",
+									"testFirstName = \"John\";\r",
+									"testLastName = \"Doe\";\r",
+									"testEmail = \"john.doe@doesnotexist.com\";\r",
+									"testBirthday = \"1901-01-01\";\r",
+									"\r",
+									"// Status\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"\r",
+									"// ========================= [FIRST] =========================\r",
+									"pm.test(`${check_if} ${user} ${is_present}`, function () {\r",
+									"    pm.expect(jsonData.customer.id).exist;\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Firstname ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.firstname).to.eql(testFirstName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Lastname ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.lastname).to.eql(testLastName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Email ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.email).to.eql(testEmail);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Birthday ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.birthday).to.eql(testBirthday);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<prestashop>\r\n    <customers>\r\n        <firstname>John</firstname>\r\n        <lastname>Doe</lastname>\r\n        <email>john.doe@doesnotexist.com</email>\r\n        <id_gender>1</id_gender>\r\n        <birthday>1901-01-01</birthday>\r\n        <passwd>password</passwd>\r\n    </customers>\r\n</prestashop>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://104.209.254.152/api/customers/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+							"protocol": "http",
+							"host": [
+								"104",
+								"209",
+								"254",
+								"152"
+							],
+							"path": [
+								"api",
+								"customers",
+								""
+							],
+							"query": [
+								{
+									"key": "ws_key",
+									"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+								},
+								{
+									"key": "output_format",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Test name variables\r",
+									"check_if = \"Check if user ID #\";\r",
+									"is_present = \"is present\";\r",
+									"is_correct = \"is correct\";\r",
+									"user = jsonData.customer.id;\r",
+									"\r",
+									"// Test data variables\r",
+									"testFirstName = \"John\";\r",
+									"testLastName = \"Doe\";\r",
+									"testEmail = \"john.doe@doesnotexist.com\";\r",
+									"testBirthday = \"1901-01-01\";\r",
+									"\r",
+									"// Status\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ========================= [FIRST] =========================\r",
+									"pm.test(`${check_if} ${user} ${is_present}`, function () {\r",
+									"    pm.expect(jsonData.customer.id).exist;\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Firstname ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.firstname).to.eql(testFirstName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Lastname ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.lastname).to.eql(testLastName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Email ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.email).to.eql(testEmail);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${user} Birthday ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.customer.birthday).to.eql(testBirthday);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://104.209.254.152/api/customers{{newUser}}?&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+							"protocol": "http",
+							"host": [
+								"104",
+								"209",
+								"254",
+								"152"
+							],
+							"path": [
+								"api",
+								"customers{{newUser}}"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "ws_key",
+									"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+								},
+								{
+									"key": "output_format",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping cart",
+			"item": [
+				{
+					"name": "Add to shopping cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"cart = jsonData.cart.id;\r",
+									"pm.collectionVariables.set(\"savedCart\", \"/\"+cart);\r",
+									"\r",
+									"// Test name variables\r",
+									"check_if = \"Check if product ID #\";\r",
+									"is_added = \"is added to cart\";\r",
+									"is_correct_quantity = \"quantity is correct\";\r",
+									"product_1 = jsonData.cart.associations.cart_rows[0].id_product;\r",
+									"product_2 = jsonData.cart.associations.cart_rows[1].id_product;\r",
+									"\r",
+									"// Test data variables first product\r",
+									"testFirstProductId = \"6\";\r",
+									"testFirstProductQuantity = \"3\";\r",
+									"\r",
+									"// Test data variables second product\r",
+									"testSecondProductId = \"8\";\r",
+									"testSecondProductQuantity = \"4\";\r",
+									"\r",
+									"// Status\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"\r",
+									"// ========================= [FIRST] =========================\r",
+									"pm.test(`${check_if} ${product_1} ${is_added}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[0].id_product).to.eql(testFirstProductId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${product_1} ${is_correct_quantity}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[0].quantity).to.eql(testFirstProductQuantity);\r",
+									"});\r",
+									"\r",
+									"// ========================= [SECOND] =========================\r",
+									"pm.test(`${check_if} ${product_2} ${is_added}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[1].id_product).to.eql(testSecondProductId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${product_2} ${is_correct_quantity}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[1].quantity).to.eql(testSecondProductQuantity);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<prestashop>\r\n    <cart>\r\n        <id_currency>1</id_currency>\r\n        <id_lang>1</id_lang>\r\n        <associations>\r\n            <cart_rows nodeType=\"cart_row\" virtualEntity=\"true\">>\r\n                <cart_row>\r\n                    <id_product>6</id_product>\r\n                    <id_product_attribute>0</id_product_attribute>\r\n                    <id_address_delivery>0</id_address_delivery>\r\n                    <id_customization>0</id_customization>\r\n                    <quantity>3</quantity>\r\n                </cart_row>\r\n                    <cart_row>\r\n                    <id_product>8</id_product>\r\n                    <id_product_attribute>0</id_product_attribute>\r\n                    <id_address_delivery>0</id_address_delivery>\r\n                    <id_customization>0</id_customization>\r\n                    <quantity>4</quantity>\r\n                </cart_row>\r\n            </cart_rows>\r\n        </associations>\r\n    </cart>\r\n</prestashop>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://104.209.254.152/api/carts/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+							"protocol": "http",
+							"host": [
+								"104",
+								"209",
+								"254",
+								"152"
+							],
+							"path": [
+								"api",
+								"carts",
+								""
+							],
+							"query": [
+								{
+									"key": "ws_key",
+									"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+								},
+								{
+									"key": "output_format",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get created shopping cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Test name variables\r",
+									"check_if = \"Check if product ID #\";\r",
+									"is_added = \"is added to cart\";\r",
+									"is_correct_quantity = \"quantity is correct\";\r",
+									"product_1 = jsonData.cart.associations.cart_rows[0].id_product;\r",
+									"product_2 = jsonData.cart.associations.cart_rows[1].id_product;\r",
+									"\r",
+									"// Test data variables first product\r",
+									"testFirstProductId = \"6\";\r",
+									"testFirstProductQuantity = \"3\";\r",
+									"\r",
+									"// Test data variables second product\r",
+									"testSecondProductId = \"8\";\r",
+									"testSecondProductQuantity = \"4\";\r",
+									"\r",
+									"// Status\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ========================= [FIRST] =========================\r",
+									"pm.test(`${check_if} ${product_1} ${is_added}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[0].id_product).to.eql(testFirstProductId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${product_1} ${is_correct_quantity}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[0].quantity).to.eql(testFirstProductQuantity);\r",
+									"});\r",
+									"\r",
+									"// ========================= [SECOND] =========================\r",
+									"pm.test(`${check_if} ${product_2} ${is_added}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[1].id_product).to.eql(testSecondProductId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${product_2} ${is_correct_quantity}`, function () {\r",
+									"    pm.expect(jsonData.cart.associations.cart_rows[1].quantity).to.eql(testSecondProductQuantity);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://104.209.254.152/api/carts{{savedCart}}?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+							"protocol": "http",
+							"host": [
+								"104",
+								"209",
+								"254",
+								"152"
+							],
+							"path": [
+								"api",
+								"carts{{savedCart}}"
+							],
+							"query": [
+								{
+									"key": "ws_key",
+									"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+								},
+								{
+									"key": "output_format",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filter",
+			"item": [
+				{
+					"name": "Filter using URL API Function (&filter)",
+					"item": [
+						{
+							"name": "Filter: products -> brand",
+							"item": [
+								{
+									"name": "Filter: Studio Design",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var response = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Test that brand filter Studio Design works\", function () {\r",
+													"    var array = [\r",
+													"    {\r",
+													"        \"id\": 1,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 2,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 6,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 7,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 8,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 9,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 10,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 11,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 19,\r",
+													"    },\r",
+													"    ]\r",
+													"    pm.expect(response.products).to.deep.equal(array);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?filter[id_manufacturer]=1&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id_manufacturer]",
+													"value": "1"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: Graphic Corner",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var response = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Test that brand filter Graphic Corner works\", function () {\r",
+													"    var array = [\r",
+													"    {\r",
+													"        \"id\": 16,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 17,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 18,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 3,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 4,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 5,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 12,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 13,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 14,\r",
+													"    },\r",
+													"    ]\r",
+													"    pm.expect(response.products).to.deep.equal(array);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?filter[id_manufacturer]=2&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id_manufacturer]",
+													"value": "2"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: FilipWerk",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var response = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Test that brand filter FilipWerk works\", function () {\r",
+													"    var array = [\r",
+													"    {\r",
+													"        \"id\": 22,\r",
+													"    },\r",
+													"    {\r",
+													"        \"id\": 24,\r",
+													"    },\r",
+													"    ]\r",
+													"    pm.expect(response.products).to.deep.equal(array);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?filter[id_manufacturer]=3&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id_manufacturer]",
+													"value": "3"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Filter: products -> name",
+							"item": [
+								{
+									"name": "Filter: Jacket|Customizable mug",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"// Test name variables\r",
+													"one = \"#1\";\r",
+													"two = \"#2\";\r",
+													"check_if = \"Check if product\";\r",
+													"is_correct = \"is correct\";\r",
+													"\r",
+													"// Test data variables first product\r",
+													"testFirstId = 19;\r",
+													"testFirstManufacturerName = \"Studio Design\";\r",
+													"testFirstprice = \"13.900000\";\r",
+													"testFirstProductName = \"Customizable mug\";\r",
+													"\r",
+													"// Test data variables second product\r",
+													"testSecondId = 22;\r",
+													"testSecondManufacturerName = \"FilipWerk\";\r",
+													"testSecondprice = \"75.000000\";\r",
+													"testSecondProductName = \"Jacket\";\r",
+													"\r",
+													"// Status\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"// ========================= [FIRST] =========================\r",
+													"\r",
+													"pm.test(`${one} ${check_if} id ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[0].id).to.eql(testFirstId);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${one} ${check_if} manufacturer name ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[0].manufacturer_name).to.eql(testFirstManufacturerName);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${one} ${check_if} price ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[0].price).to.eql(testFirstprice);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${one} ${check_if} product name ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[0].name).to.eql(testFirstProductName);\r",
+													"});\r",
+													"\r",
+													"// ========================= [SECOND] =========================\r",
+													"\r",
+													"pm.test(`${two} ${check_if} id ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[1].id).to.eql(testSecondId);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${two} ${check_if} manufacturer name ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[1].manufacturer_name).to.eql(testSecondManufacturerName);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${two} ${check_if} price ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[1].price).to.eql(testSecondprice);\r",
+													"});\r",
+													"\r",
+													"pm.test(`${two} ${check_if} product name ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[1].name).to.eql(testSecondProductName);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=[id,manufacturer_name,price,name]&filter[name]=[Jacket|Customizable mug]",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "[id,manufacturer_name,price,name]"
+												},
+												{
+													"key": "filter[name]",
+													"value": "[Jacket|Customizable mug]"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Filter: products -> price",
+							"item": [
+								{
+									"name": "Filter: 20,35",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"// Test name variables\r",
+													"check_if = \"Check if\";\r",
+													"one = \"first\";\r",
+													"two = \"second\";\r",
+													"three = \"third\";\r",
+													"four = \"fourth\";\r",
+													"five = \"fifth\";\r",
+													"productprice = \"product price\";\r",
+													"is_correct = \"is correct\";\r",
+													"\r",
+													"// Test data variables\r",
+													"testFirstPrice = \"23.900000\";\r",
+													"testSecondPrice = \"35.000000\";\r",
+													"testThirdPrice = \"29.000000\";\r",
+													"testFourthPrice = \"29.000000\";\r",
+													"testFifthPrice = \"29.000000\";\r",
+													"\r",
+													"// Status\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"// ========================= [FIRST] =========================\r",
+													"pm.test(`${check_if} ${one} ${productprice} ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[0].price).to.eql(testFirstPrice);\r",
+													"});\r",
+													"\r",
+													"// ========================= [SECOND] =========================\r",
+													"pm.test(`${check_if} ${two} ${productprice} ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[1].price).to.eql(testSecondPrice);\r",
+													"});\r",
+													"\r",
+													"// ========================= [THIRD] =========================\r",
+													"pm.test(`${check_if} ${three} ${productprice} ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[2].price).to.eql(testThirdPrice);\r",
+													"});\r",
+													"\r",
+													"// ========================= [FOURTH] =========================\r",
+													"pm.test(`${check_if} ${four} ${productprice} ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[3].price).to.eql(testFourthPrice);\r",
+													"});\r",
+													"\r",
+													"// ========================= [FIFTH] =========================\r",
+													"pm.test(`${check_if} ${five} ${productprice} ${is_correct}`, function () {\r",
+													"    pm.expect(jsonData.products[4].price).to.eql(testFifthPrice);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=[id,manufacturer_name,price,name]&filter[price]=[20,35]",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "[id,manufacturer_name,price,name]"
+												},
+												{
+													"key": "filter[price]",
+													"value": "[20,35]"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Filter: price_ranges -> id",
+							"item": [
+								{
+									"name": "Filter: 3,5",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"testThatdelimiter2=5000\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.price_ranges[0].delimiter2).to.eql(\"100.000000\");\r",
+													"});\r",
+													"pm.test(\"testThatdelimiter1=0.000000\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.price_ranges[1].delimiter1).to.eql(\"100.000000\");\r",
+													"});\r",
+													"pm.test(\"testThatid_carrier=3\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.price_ranges[2].id_carrier).to.eql(\"1\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/price_ranges?filter[id]=[3,5]&ws_key=319B4R11VVY17EDZL6YFDZ2XFQLEGE8D&output_format=JSON&display=full",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"price_ranges"
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[3,5]"
+												},
+												{
+													"key": "ws_key",
+													"value": "319B4R11VVY17EDZL6YFDZ2XFQLEGE8D"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "full"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Filter: product_option_values -> colors",
+							"item": [
+								{
+									"name": "Filter: colors",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"Status code name has string\", function () {\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"pm.test(\"Body contains string\", () => {\r",
+													"    pm.expect(pm.response.text()).to.include(\"color\");\r",
+													"});\r",
+													"pm.test(\"Body contains string\", () => {\r",
+													"    pm.expect(pm.response.text()).to.include(\"product_option_values\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/product_option_values/?filter[id_attribute_group]=2&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=full",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"product_option_values",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id_attribute_group]",
+													"value": "2"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "full"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Filter: weight_ranges -> id",
+							"item": [
+								{
+									"name": "Filter: weight_ranges id 1-4",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"pm.test(\"Amount of id\", function () {\r",
+													"     var body = JSON.parse(responseBody);\r",
+													" \r",
+													"     pm.expect(body.weight_ranges.length).to.eql(4);\r",
+													"     pm.expect(body.weight_ranges).to.eql([\r",
+													"        {\r",
+													"            \"id\": 1\r",
+													"        },\r",
+													"        {\r",
+													"            \"id\": 2\r",
+													"        },\r",
+													"        {\r",
+													"            \"id\": 3\r",
+													"        },\r",
+													"        {\r",
+													"            \"id\": 4\r",
+													"        }\r",
+													"    ]);\r",
+													"       \r",
+													"    });\r",
+													" "
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/weight_ranges/?filter[id]=[1,4]&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"weight_ranges",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[1,4]"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: weight_ranges id 1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"pm.test(\"Amount of id\", function () {\r",
+													"     var body = JSON.parse(responseBody);\r",
+													" \r",
+													"     pm.expect(body.weight_ranges.length).to.eql(1);\r",
+													"     pm.expect(body.weight_ranges).to.eql([ { id: 1 } ]);\r",
+													"       \r",
+													"    });"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/weight_ranges/?filter[id]=[1]&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"weight_ranges",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[1]"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: weight_ranges id 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"pm.test(\"Amount of id\", function () {\r",
+													"     var body = JSON.parse(responseBody);\r",
+													" \r",
+													"     pm.expect(body.weight_ranges.length).to.eql(1);\r",
+													"     pm.expect(body.weight_ranges).to.eql([ { id: 2 } ]);\r",
+													"       \r",
+													"    });"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/weight_ranges/?filter[id]=[2]&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"weight_ranges",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[2]"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: weight_ranges id 3",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"pm.test(\"Amount of id\", function () {\r",
+													"     var body = JSON.parse(responseBody);\r",
+													" \r",
+													"     pm.expect(body.weight_ranges.length).to.eql(1);\r",
+													"     pm.expect(body.weight_ranges).to.eql([ { id: 3 } ]);\r",
+													"     \r",
+													"       \r",
+													"    });"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/weight_ranges/?filter[id]=[3]&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"weight_ranges",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[3]"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter: weight_ranges id 4",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"pm.test(\"Amount of id\", function () {\r",
+													"     var body = JSON.parse(responseBody);\r",
+													" \r",
+													"     pm.expect(body.weight_ranges.length).to.eql(1);\r",
+													"     pm.expect(body.weight_ranges).to.eql([ { id: 4 } ]);\r",
+													"       \r",
+													"    });"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/weight_ranges/?filter[id]=[4]&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"weight_ranges",
+												""
+											],
+											"query": [
+												{
+													"key": "filter[id]",
+													"value": "[4]"
+												},
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Filter using JavaScript",
+					"item": [
+						{
+							"name": "JavaScript",
+							"item": [
+								{
+									"name": "Filter: Anything (JavaScript)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"let whatToFilter = 1;\r",
+													"/* \r",
+													"::SIZES:: \r",
+													"1 = Small\r",
+													"2 = Medium\r",
+													"3 = Large\r",
+													"4 = X-Large\r",
+													"::COLORS:: \r",
+													"5 = Grey, #AAB2BD\r",
+													"6 = Taupe, #CFC4A6\r",
+													"7 = Beige, #f5f5dc\r",
+													"8 = White, #ffffff\r",
+													"9 = Off White, #faebd7\r",
+													"10 = Red, #E84C3D\r",
+													"11 = Black, #434A54\r",
+													"12 = Camel, #C19A6B\r",
+													"13 = Orange, #F39C11\r",
+													"14 = Blue, #5D9CEC\r",
+													"15 = Green, #A0D468\r",
+													"16 = Yellow, #F1C40F\r",
+													"17 = Brown, #964B00\r",
+													"18 = Pink, #FCCACD\r",
+													"::DIMENSION::\r",
+													"19 = 40x60cm\r",
+													"20 = 60x90cm\r",
+													"21 = 80x120cm\r",
+													"::PAPER:TYPE::\r",
+													"22 = Ruled\r",
+													"23 = Plain\r",
+													"24 = Squarred\r",
+													"25 = Doted\r",
+													"*/ \r",
+													"\r",
+													"pm.test(\"Anything & everything...\", function () {\r",
+													"var sub_array = [];\r",
+													"var super_array = [];\r",
+													"    for (let i = 0; i < jsonData.products.length; i++) {\r",
+													"        jsonData.products[i].associations.product_option_values;\r",
+													"        \r",
+													"        if(jsonData.products[i].associations.product_option_values != null) {\r",
+													"            for (let j = 0; j < jsonData.products[i].associations.product_option_values.length; j++) {\r",
+													"                jsonData.products[i].associations.product_option_values[j];\r",
+													"\r",
+													"                if(jsonData.products[i].associations.product_option_values[j].id == whatToFilter) {\r",
+													"                    //console.log(jsonData.products[i].name)\r",
+													"                    sub_array.push(i)\r",
+													"                    super_array.push(sub_array.slice(0));\r",
+													"                    console.log(\"sub \" + sub_array)\r",
+													"                    console.log(\"super \" + super_array)\r",
+													"                    console.log(\"i\" + jsonData.products[i].id)\r",
+													"                    //pm.expect(sub_array).to.have.all.keys('1' || '2')\r",
+													"                    //console.log(\"id: \" + jsonData.products[i].id + \"    \" + \"name: \" + jsonData.products[i].name + \"    \" + \"Product option values: \" + JSON.stringify(jsonData.products[i].associations.product_option_values[j]))\r",
+													"                    //pm.expect(jsonData.products[i].id).to.eql()\r",
+													"                //let arr = ['Hummingbird printed t-shirt', 'Hummingbird printed sweater'], responseText = jsonData.products[i].name; arr.forEach((x) => { pm.expect(responseText).to.include(x); });\r",
+													"                        \r",
+													"                        \r",
+													"                       // sub_array.forEach(function(item) {\r",
+													"                       // pm.expect(item).to.have.all.keys('1');});\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"                //console.log(jsonData.products[i].name.length)\r",
+													"                //pm.expect(jsonData.products[i].name).to.contain(\"t-shirt\")\r",
+													"                //console.log(typeof jsonData.products[i].name)\r",
+													"                }\r",
+													"            }\r",
+													"        }\r",
+													"\r",
+													"    }\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=full",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "full"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "tmp",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();  \r",
+													"\r",
+													"/* \r",
+													"::SIZES:: \r",
+													"1 = Small\r",
+													"2 = Medium\r",
+													"3 = Large\r",
+													"4 = X-Large\r",
+													"::COLORS:: \r",
+													"5 = Grey, #AAB2BD\r",
+													"6 = Taupe, #CFC4A6\r",
+													"7 = Beige, #f5f5dc\r",
+													"8 = White, #ffffff\r",
+													"9 = Off White, #faebd7\r",
+													"10 = Red, #E84C3D\r",
+													"11 = Black, #434A54\r",
+													"12 = Camel, #C19A6B\r",
+													"13 = Orange, #F39C11\r",
+													"14 = Blue, #5D9CEC\r",
+													"15 = Green, #A0D468\r",
+													"16 = Yellow, #F1C40F\r",
+													"17 = Brown, #964B00\r",
+													"18 = Pink, #FCCACD\r",
+													"::DIMENSION::\r",
+													"19 = 40x60cm\r",
+													"20 = 60x90cm\r",
+													"21 = 80x120cm\r",
+													"::PAPER:TYPE::\r",
+													"22 = Ruled\r",
+													"23 = Plain\r",
+													"24 = Squarred\r",
+													"25 = Doted\r",
+													"*/ \r",
+													"\r",
+													"var jsonData_names = new Array;\r",
+													"function uniq(a) {\r",
+													"    var prims = {\"boolean\":{}, \"number\":{}, \"string\":{}}, objs = [];\r",
+													"    return a.filter(function(item) {\r",
+													"        var type = typeof item;\r",
+													"        if(type in prims)\r",
+													"            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);\r",
+													"        else\r",
+													"            return objs.indexOf(item) >= 0 ? false : objs.push(item);\r",
+													"    });\r",
+													"}\r",
+													"pm.test(\"Body matches values\", function () {\r",
+													"\r",
+													"        for (let i = 0; i < jsonData.products.length; i++) {\r",
+													"            jsonData.products[i].associations.product_option_values;\r",
+													"            if(jsonData.products[i].associations.product_option_values != null){\r",
+													"                 for(let j =0; j < jsonData.products[i].associations.product_option_values.length;j++){\r",
+													"                     jsonData.products[i].associations.product_option_values[j];\r",
+													"                        if(jsonData.products[i].associations.product_option_values[j].id <5){\r",
+													"                           jsonData_names.add(jsonData.products[i].name)\r",
+													"                        }\r",
+													"            } \r",
+													"            }\r",
+													"}\r",
+													"pm.expect(jsonData_names.length).to.be.eql(8);\r",
+													"var jsonData_names_uni =uniq(jsonData_names); \r",
+													" pm.expect(jsonData_names_uni.length).to.be.eql(2);\r",
+													"var arraycontainsTshirt = (jsonData_names_uni.indexOf(\"Hummingbird printed t-shirt\") > -1);\r",
+													"var arraycontainsSweater = (jsonData_names_uni.indexOf(\"Hummingbird printed sweater\") > -1);\r",
+													"pm.expect(arraycontainsSweater).to.be.eql(true);\r",
+													"pm.expect(arraycontainsTshirt).to.be.eql(true);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://104.209.254.152/api/products/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&display=full",
+											"protocol": "http",
+											"host": [
+												"104",
+												"209",
+												"254",
+												"152"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "ws_key",
+													"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+												},
+												{
+													"key": "output_format",
+													"value": "JSON"
+												},
+												{
+													"key": "display",
+													"value": "full"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Search & sort",
+			"item": [
+				{
+					"name": "Search -> bear &sort -> price_desc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Test name variables\r",
+									"check_if = \"Check if\";\r",
+									"one = \"first\";\r",
+									"two = \"second\";\r",
+									"three = \"third\";\r",
+									"product = \"product\";\r",
+									"is_correct = \"is correct\";\r",
+									"\r",
+									"// Test data variables first product\r",
+									"testFirstId = 10;\r",
+									"testFirstName = \"Brown bear cushion\";\r",
+									"testFirstPrice = \"18.900000\";\r",
+									"\r",
+									"// Test data variables second product\r",
+									"testSecondId = 17;\r",
+									"testSecondName = \"Brown bear notebook\";\r",
+									"testSecondPrice = \"12.900000\";\r",
+									"\r",
+									"// Test data variables third product\r",
+									"testThirdId = 13;\r",
+									"testThirdName = \"Brown bear - Vector graphics\";\r",
+									"testThirdPrice = \"9.000000\";\r",
+									"\r",
+									"// Status\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ========================= [FIRST] =========================\r",
+									"pm.test(`${check_if} ${one} ${product} id ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[0].id).to.eql(testFirstId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${one} ${product} name ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[0].name).to.eql(testFirstName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${one} ${product} price ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[0].price).to.eql(testFirstPrice);\r",
+									"});\r",
+									"\r",
+									"// ========================= [SECOND] =========================\r",
+									"pm.test(`${check_if} ${two} ${product} id ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[1].id).to.eql(testSecondId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${two} ${product} name ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[1].name).to.eql(testSecondName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${two} ${product} price ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[1].price).to.eql(testSecondPrice);\r",
+									"});\r",
+									"\r",
+									"// ========================= [THIRD] =========================\r",
+									"pm.test(`${check_if} ${three} ${product} id ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[2].id).to.eql(testThirdId);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${three} ${product} name ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[2].name).to.eql(testThirdName);\r",
+									"});\r",
+									"\r",
+									"pm.test(`${check_if} ${three} ${product} price ${is_correct}`, function () {\r",
+									"    pm.expect(jsonData.products[2].price).to.eql(testThirdPrice);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://104.209.254.152/api/search/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON&language=1&query=bear&display=full&sort=[price_DESC]",
+							"protocol": "http",
+							"host": [
+								"104",
+								"209",
+								"254",
+								"152"
+							],
+							"path": [
+								"api",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "ws_key",
+									"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+								},
+								{
+									"key": "output_format",
+									"value": "JSON"
+								},
+								{
+									"key": "language",
+									"value": "1"
+								},
+								{
+									"key": "query",
+									"value": "bear"
+								},
+								{
+									"key": "display",
+									"value": "full"
+								},
+								{
+									"key": "sort",
+									"value": "[price_DESC]"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Verifying API structure using URL",
+			"item": [
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "Category (All)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response is OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"ID 4, 5, 7 and 8 exists\")\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('category id=\"4\"');\r",
+											"    pm.expect(pm.response.text()).to.include('category id=\"5\"');\r",
+											"    pm.expect(pm.response.text()).to.include('category id=\"7\"');\r",
+											"    pm.expect(pm.response.text()).to.include('category id=\"8\"');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/categories/?ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"categories",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Category 4 (Men)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response is OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.expect()\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Men\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/categories/4/?ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"categories",
+										"4",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Category 5 (Women)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response is OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.expect()\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Women\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://104.209.254.152/api/categories/5/?ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"categories",
+										"5",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Category 7 (Stationery)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response is OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.expect()\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Stationery\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/categories/7/?ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"categories",
+										"7",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Category 8 (Home Accessories)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response is OK\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.expect()\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Home Accessories\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/categories/8/?ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"categories",
+										"8",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "weight_ranges",
+					"item": [
+						{
+							"name": "weight_ranges id 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();  \r",
+											"pm.test(\"Body matches values\", function () {\r",
+											"    \r",
+											"        pm.expect(jsonData.weight_range.id).is.to.equal(1);\r",
+											"        pm.expect(jsonData.weight_range.id_carrier).is.to.equal(\"2\"); \r",
+											"        pm.expect(jsonData.weight_range.delimiter1).is.to.equal(\"0.000000\");\r",
+											"        pm.expect(jsonData.weight_range.delimiter2).is.to.equal(\"10000.000000\")\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/weight_ranges/1/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"weight_ranges",
+										"1",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+										},
+										{
+											"key": "output_format",
+											"value": "JSON"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "weight_ranges id 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();  \r",
+											"pm.test(\"Body matches values\", function () {\r",
+											"    \r",
+											"        pm.expect(jsonData.weight_range.id).is.to.equal(2);\r",
+											"        pm.expect(jsonData.weight_range.id_carrier).is.to.equal(\"4\"); \r",
+											"        pm.expect(jsonData.weight_range.delimiter1).is.to.equal(\"0.000000\");\r",
+											"        pm.expect(jsonData.weight_range.delimiter2).is.to.equal(\"1.000000\")\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/weight_ranges/2/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"weight_ranges",
+										"2",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+										},
+										{
+											"key": "output_format",
+											"value": "JSON"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "weight_ranges id 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();  \r",
+											"pm.test(\"Body matches values\", function () {\r",
+											"    \r",
+											"        pm.expect(jsonData.weight_range.id).is.to.equal(3);\r",
+											"        pm.expect(jsonData.weight_range.id_carrier).is.to.equal(\"4\"); \r",
+											"        pm.expect(jsonData.weight_range.delimiter1).is.to.equal(\"1.000000\");\r",
+											"        pm.expect(jsonData.weight_range.delimiter2).is.to.equal(\"3.000000\")\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/weight_ranges/3/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"weight_ranges",
+										"3",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+										},
+										{
+											"key": "output_format",
+											"value": "JSON"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "weight_ranges id 4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();  \r",
+											"pm.test(\"Body matches values\", function () {\r",
+											"    \r",
+											"        pm.expect(jsonData.weight_range.id).is.to.equal(4);\r",
+											"        pm.expect(jsonData.weight_range.id_carrier).is.to.equal(\"4\"); \r",
+											"        pm.expect(jsonData.weight_range.delimiter1).is.to.equal(\"3.000000\");\r",
+											"        pm.expect(jsonData.weight_range.delimiter2).is.to.equal(\"10000.000000\")\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://104.209.254.152/api/weight_ranges/4/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&output_format=JSON",
+									"protocol": "http",
+									"host": [
+										"104",
+										"209",
+										"254",
+										"152"
+									],
+									"path": [
+										"api",
+										"weight_ranges",
+										"4",
+										""
+									],
+									"query": [
+										{
+											"key": "ws_key",
+											"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+										},
+										{
+											"key": "output_format",
+											"value": "JSON"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "newUser",
+			"value": ""
+		},
+		{
+			"key": "savedCart",
+			"value": ""
+		}
+	]
+}
